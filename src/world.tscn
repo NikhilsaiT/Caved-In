@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbpa3qy5opwhf"]
+[gd_scene load_steps=6 format=3 uid="uid://dbpa3qy5opwhf"]
 
-[ext_resource type="Texture2D" uid="uid://cvjkg3jhlikep" path="res://black-and-white-1.webp" id="1_xlegt"]
+[ext_resource type="Texture2D" uid="uid://cvjkg3jhlikep" path="res://assets/black-and-white-1.webp" id="1_xlegt"]
 [ext_resource type="Script" uid="uid://dnjnv6ydcje85" path="res://src/tile_map.gd" id="2_0qwtu"]
+[ext_resource type="PackedScene" uid="uid://bd5t7bjbxt3mi" path="res://src/player.tscn" id="3_0qwtu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t101k"]
 texture = ExtResource("1_xlegt")
@@ -19,3 +20,11 @@ sources/0 = SubResource("TileSetAtlasSource_t101k")
 tile_set = SubResource("TileSet_36ipd")
 format = 2
 script = ExtResource("2_0qwtu")
+
+[node name="Player" parent="." instance=ExtResource("3_0qwtu")]
+position = Vector2(226, 230)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+zoom = Vector2(3, 3)
+position_smoothing_speed = 150.0
