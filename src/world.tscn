@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbpa3qy5opwhf"]
+
+[ext_resource type="Texture2D" uid="uid://cvjkg3jhlikep" path="res://black-and-white-1.webp" id="1_xlegt"]
+[ext_resource type="Script" uid="uid://dnjnv6ydcje85" path="res://src/tile_map.gd" id="2_0qwtu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t101k"]
+texture = ExtResource("1_xlegt")
+texture_region_size = Vector2i(4, 16)
+61:12/0 = 0
+158:12/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_36ipd"]
+tile_size = Vector2i(4, 4)
+sources/0 = SubResource("TileSetAtlasSource_t101k")
+
+[node name="world" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_36ipd")
+format = 2
+script = ExtResource("2_0qwtu")
