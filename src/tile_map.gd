@@ -47,7 +47,7 @@ func set_custom_tile(center_pos: Vector2i, tile_atlas_pos: Vector2 = Vector2(0, 
 		for dy in range(-2, 3):
 			var pos = center_pos + Vector2i(dx, dy)
 			chunk_data[chunk_pos][pos] = tile_atlas_pos
-			set_cell(0, pos, 0, tile_atlas_pos)
+			set_cell(0, pos, 5, tile_atlas_pos)
 
 
 func generate_chunk(chunk_pos: Vector2):
@@ -68,7 +68,7 @@ func generate_chunk(chunk_pos: Vector2):
 				var noiseVal = fnl.get_noise_2d(world_x, world_y)
 				tile = Vector2(61, 12) if noiseVal < 0.14 else Vector2(158, 12)
 
-			set_cell(0, world_pos, 0, tile)
+			set_cell(0, world_pos, 5, tile)
 
 	loaded_chunks[chunk_pos] = true
 
