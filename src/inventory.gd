@@ -45,9 +45,16 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("toggle inventory")): #toggles inventory when E key is pressed
 		inventoryOn = !inventoryOn
 	
+<<<<<<< HEAD
+	#if(Input.is_action_just_pressed("right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
+		#var rng = RandomNumberGenerator.new()
+		#for n in range(100):
+			#pickup(Item.new(rng.randi_range(1,4),1),0)
+=======
 	if(Input.is_action_just_pressed("move_right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
 		var rng = RandomNumberGenerator.new()
 		pickup(Item.new(rng.randi_range(1,4),1),0)
+>>>>>>> 9acbe04a5cd8e5fd9d7f7aa133ca5a6c2364b667
 		
 	if(itemInHand != null): #Displays the item in hand if an item is being held
 		$heldItem.position = get_local_mouse_position()
