@@ -25,11 +25,9 @@ script = ExtResource("2_0qwtu")
 [node name="Player" parent="." instance=ExtResource("3_0qwtu")]
 position = Vector2(226, 230)
 
+[node name="Inventory" parent="Player" instance=ExtResource("4_t101k")]
+position = Vector2(-192, -108)
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 scale = Vector2(0.25, 0.25)
-zoom = Vector2(3, 3)
 position_smoothing_speed = 150.0
-
-[node name="Inventory" parent="Player/Camera2D" instance=ExtResource("4_t101k")]
-position = Vector2(-768, -432)
-scale = Vector2(3, 3)
