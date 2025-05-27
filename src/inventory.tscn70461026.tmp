@@ -1,0 +1,170 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkkiipkpu7r48"]
+
+[ext_resource type="Script" uid="uid://b7fo8pcrbq3y7" path="res://src/inventory.gd" id="1_smvyr"]
+[ext_resource type="PackedScene" uid="uid://c2b82ski86no5" path="res://src/inventorySlot.tscn" id="1_t5bew"]
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource("1_smvyr")
+
+[node name="hotbar" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(13, 13)
+frame = 12
+metadata/frame = 0
+
+[node name="hotbar2" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(33, 13)
+frame = 13
+
+[node name="hotbar3" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(53, 13)
+frame = 13
+
+[node name="hotbar4" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(73, 13)
+frame = 13
+
+[node name="hotbar5" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(93, 13)
+frame = 13
+
+[node name="hotbar6" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(113, 13)
+frame = 13
+
+[node name="hotbar7" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(133, 13)
+frame = 13
+
+[node name="hotbar8" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(153, 13)
+frame = 13
+
+[node name="hotbar9" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(173, 13)
+frame = 13
+
+[node name="hotbar10" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(193, 13)
+frame = 14
+
+[node name="slot" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(13, 44)
+metadata/frame = 0
+
+[node name="slot2" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(33, 44)
+frame = 1
+
+[node name="slot3" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(53, 44)
+frame = 1
+
+[node name="slot4" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(73, 44)
+frame = 1
+
+[node name="slot5" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(93, 44)
+frame = 1
+
+[node name="slot6" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(113, 44)
+frame = 1
+
+[node name="slot7" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(133, 44)
+frame = 1
+
+[node name="slot8" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(153, 44)
+frame = 1
+
+[node name="slot9" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(173, 44)
+frame = 1
+
+[node name="slot10" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(193, 44)
+frame = 2
+
+[node name="slot11" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(13, 64)
+frame = 4
+metadata/frame = 0
+
+[node name="slot12" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(33, 64)
+frame = 5
+
+[node name="slot13" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(53, 64)
+frame = 5
+
+[node name="slot14" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(73, 64)
+frame = 5
+
+[node name="slot15" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(93, 64)
+frame = 5
+
+[node name="slot16" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(113, 64)
+frame = 5
+
+[node name="slot17" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(133, 64)
+frame = 5
+
+[node name="slot18" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(153, 64)
+frame = 5
+
+[node name="slot19" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(173, 64)
+frame = 5
+
+[node name="slot20" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(193, 64)
+frame = 6
+
+[node name="slot21" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(13, 84)
+frame = 8
+metadata/frame = 0
+
+[node name="slot22" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(33, 84)
+frame = 9
+
+[node name="slot23" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(53, 84)
+frame = 9
+
+[node name="slot24" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(73, 84)
+frame = 9
+
+[node name="slot25" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(93, 84)
+frame = 9
+
+[node name="slot26" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(113, 84)
+frame = 9
+
+[node name="slot27" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(133, 84)
+frame = 9
+
+[node name="slot28" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(153, 84)
+frame = 9
+
+[node name="slot29" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(173, 84)
+frame = 9
+
+[node name="slot30" parent="." instance=ExtResource("1_t5bew")]
+position = Vector2(193, 84)
+frame = 10

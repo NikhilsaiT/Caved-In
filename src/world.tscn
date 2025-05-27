@@ -1,7 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbpa3qy5opwhf"]
 
-[ext_resource type="Texture2D" uid="uid://cvjkg3jhlikep" path="res://black-and-white-1.webp" id="1_xlegt"]
+[ext_resource type="Texture2D" uid="uid://cvjkg3jhlikep" path="res://assets/black-and-white-1.webp" id="1_xlegt"]
 [ext_resource type="Script" uid="uid://dnjnv6ydcje85" path="res://src/tile_map.gd" id="2_0qwtu"]
+
+[ext_resource type="PackedScene" uid="uid://bd5t7bjbxt3mi" path="res://src/player.tscn" id="3_0qwtu"]
+[ext_resource type="PackedScene" uid="uid://dkkiipkpu7r48" path="res://src/inventory.tscn" id="4_t101k"]
 [ext_resource type="Texture2D" uid="uid://cegpr6fsl8m2r" path="res://pixil-frame-0_7.webp" id="2_t101k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t101k"]
@@ -307,3 +310,13 @@ sources/6 = SubResource("TileSetAtlasSource_36ipd")
 tile_set = SubResource("TileSet_36ipd")
 format = 2
 script = ExtResource("2_0qwtu")
+
+[node name="Player" parent="." instance=ExtResource("3_0qwtu")]
+position = Vector2(226, 230)
+
+[node name="Inventory" parent="Player" instance=ExtResource("4_t101k")]
+position = Vector2(-192, -108)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+position_smoothing_speed = 150.0

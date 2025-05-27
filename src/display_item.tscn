@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://0lx1jrhvf47v"]
+
+[ext_resource type="Script" uid="uid://dkpkx5lnx40q5" path="res://src/display_item.gd" id="1_cjose"]
+[ext_resource type="Texture2D" uid="uid://dsnorowa7762s" path="res://assets/itemSheet.png" id="1_vm5p6"]
+[ext_resource type="FontFile" uid="uid://bup8vvcsqfd65" path="res://assets/3-by-5-pixel-font.otf" id="3_cjose"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfujq"]
+atlas = ExtResource("1_vm5p6")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjose"]
+atlas = ExtResource("1_vm5p6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eko76"]
+atlas = ExtResource("1_vm5p6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38t1s"]
+atlas = ExtResource("1_vm5p6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrej7"]
+atlas = ExtResource("1_vm5p6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80cmo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfujq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjose")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eko76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38t1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrej7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eko76"]
+font = ExtResource("3_cjose")
+font_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="displayItem" type="Node2D"]
+script = ExtResource("1_cjose")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_80cmo")
+frame = 1
+
+[node name="AmountDisp" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 12.0
+text = "10"
+label_settings = SubResource("LabelSettings_eko76")
+horizontal_alignment = 1

@@ -1,0 +1,243 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkkiipkpu7r48"]
+
+[ext_resource type="Script" uid="uid://b7fo8pcrbq3y7" path="res://src/inventory.gd" id="1_smvyr"]
+[ext_resource type="PackedScene" uid="uid://c2b82ski86no5" path="res://src/inventorySlot.tscn" id="1_t5bew"]
+[ext_resource type="PackedScene" uid="uid://0lx1jrhvf47v" path="res://src/display_item.tscn" id="3_kusc6"]
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource("1_smvyr")
+
+[node name="hotbar" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(13, 13)
+frame = 12
+metadata/frame = 0
+
+[node name="hotbar2" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(33, 13)
+frame = 13
+slotID = 1
+
+[node name="hotbar3" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(53, 13)
+frame = 13
+slotID = 2
+
+[node name="hotbar4" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(73, 13)
+frame = 13
+slotID = 3
+
+[node name="hotbar5" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(93, 13)
+frame = 13
+slotID = 4
+
+[node name="hotbar6" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(113, 13)
+frame = 13
+slotID = 5
+
+[node name="hotbar7" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(133, 13)
+frame = 13
+slotID = 6
+
+[node name="hotbar8" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(153, 13)
+frame = 13
+slotID = 7
+
+[node name="hotbar9" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(173, 13)
+frame = 13
+slotID = 8
+
+[node name="hotbar10" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(193, 13)
+frame = 14
+slotID = 9
+
+[node name="slot" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(13, 44)
+type = 1
+slotID = 10
+metadata/frame = 0
+
+[node name="slot2" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(33, 44)
+frame = 1
+type = 1
+slotID = 11
+
+[node name="slot3" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(53, 44)
+frame = 1
+type = 1
+slotID = 12
+
+[node name="slot4" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(73, 44)
+frame = 1
+type = 1
+slotID = 13
+
+[node name="slot5" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(93, 44)
+frame = 1
+type = 1
+slotID = 14
+
+[node name="slot6" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(113, 44)
+frame = 1
+type = 1
+slotID = 15
+
+[node name="slot7" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(133, 44)
+frame = 1
+type = 1
+slotID = 16
+
+[node name="slot8" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(153, 44)
+frame = 1
+type = 1
+slotID = 17
+
+[node name="slot9" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(173, 44)
+frame = 1
+type = 1
+slotID = 18
+
+[node name="slot10" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(193, 44)
+frame = 2
+type = 1
+slotID = 19
+
+[node name="slot11" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(13, 64)
+frame = 4
+type = 1
+slotID = 20
+metadata/frame = 0
+
+[node name="slot12" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(33, 64)
+frame = 5
+type = 1
+slotID = 21
+
+[node name="slot13" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(53, 64)
+frame = 5
+type = 1
+slotID = 22
+
+[node name="slot14" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(73, 64)
+frame = 5
+type = 1
+slotID = 23
+
+[node name="slot15" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(93, 64)
+frame = 5
+type = 1
+slotID = 24
+
+[node name="slot16" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(113, 64)
+frame = 5
+type = 1
+slotID = 25
+
+[node name="slot17" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(133, 64)
+frame = 5
+type = 1
+slotID = 26
+
+[node name="slot18" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(153, 64)
+frame = 5
+type = 1
+slotID = 27
+
+[node name="slot19" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(173, 64)
+frame = 5
+type = 1
+slotID = 28
+
+[node name="slot20" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(193, 64)
+frame = 6
+type = 1
+slotID = 29
+
+[node name="slot21" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(13, 84)
+frame = 8
+type = 1
+slotID = 30
+metadata/frame = 0
+
+[node name="slot22" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(33, 84)
+frame = 9
+type = 1
+slotID = 31
+
+[node name="slot23" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(53, 84)
+frame = 9
+type = 1
+slotID = 32
+
+[node name="slot24" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(73, 84)
+frame = 9
+type = 1
+slotID = 33
+
+[node name="slot25" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(93, 84)
+frame = 9
+type = 1
+slotID = 34
+
+[node name="slot26" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(113, 84)
+frame = 9
+type = 1
+slotID = 35
+
+[node name="slot27" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(133, 84)
+frame = 9
+type = 1
+slotID = 36
+
+[node name="slot28" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(153, 84)
+frame = 9
+type = 1
+slotID = 37
+
+[node name="slot29" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(173, 84)
+frame = 9
+type = 1
+slotID = 38
+
+[node name="slot30" parent="." groups=["slots"] instance=ExtResource("1_t5bew")]
+position = Vector2(193, 84)
+frame = 10
+type = 1
+slotID = 39
+
+[node name="heldItem" parent="." instance=ExtResource("3_kusc6")]
+position = Vector2(-18, 12)
