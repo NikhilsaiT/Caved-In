@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("toggle inventory")): #toggles inventory when E key is pressed
 		inventoryOn = !inventoryOn
 	
-	if(Input.is_action_just_pressed("right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
+	if(Input.is_action_just_pressed("move_right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
 		var rng = RandomNumberGenerator.new()
 		pickup(Item.new(rng.randi_range(1,4),1),0)
 		
