@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbpa3qy5opwhf"]
 
-[ext_resource type="Texture2D" uid="uid://cvjkg3jhlikep" path="res://black-and-white-1.webp" id="1_xlegt"]
+[ext_resource type="Texture2D" uid="uid://ddyjh5oojrn66" path="res://black-and-white-1.webp" id="1_xlegt"]
 [ext_resource type="Script" uid="uid://dnjnv6ydcje85" path="res://src/tile_map.gd" id="2_0qwtu"]
 [ext_resource type="Texture2D" uid="uid://cegpr6fsl8m2r" path="res://pixil-frame-0_7.webp" id="2_t101k"]
 
