@@ -14,3 +14,5 @@ const ITEM_DATA = [
 	[0,"iron ingot",9999,"material","","",0,"Crafted in furnace."],
 	[0,"plant fiber",9999,"material","","",0,"Obtained from lichen mats in cave layer."],
 	]
+
+const CHUNK_SIZE := 32

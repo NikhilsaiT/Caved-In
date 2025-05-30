@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 
 const ACCEL = 2000.0
-const MAX_SPEED = 250.0
+const MAX_SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 var isWalking = false
-
+var chunkPos = Vector2(0,0)
 
 func _physics_process(delta: float) -> void:
 	isWalking = false;
@@ -37,6 +37,15 @@ func _physics_process(delta: float) -> void:
 			velocity.y = max(velocity.y - ACCEL*delta, 0);
 		elif velocity.y < 0:
 			velocity.y = min(velocity.y + ACCEL*delta, 0);
+	
+	var currChunkPos = Vector2(round(position.x/(Global.CHUNK_SIZE*8)-0.5),round(position.y/(Global.CHUNK_SIZE*8)-0.5))
+	var map = get_parent().get_node("TileMap")
+	if(currChunkPos != map.current_chunk):
+		map.current_chunk = currChunkPos
+		map.load_visible_chunks()
+		map.unload_far_chunks()
+		
+		
 	
 	# animation
 	if(isWalking):

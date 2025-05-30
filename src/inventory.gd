@@ -48,9 +48,6 @@ func _process(delta: float) -> void:
 		#var rng = RandomNumberGenerator.new()
 		#for n in range(100):
 			#pickup(Item.new(rng.randi_range(1,4),1),0)
-	if(Input.is_action_just_pressed("move_right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
-		var rng = RandomNumberGenerator.new()
-		pickup(Item.new(rng.randi_range(1,4),1),0)
 		
 	if(itemInHand != null): #Displays the item in hand if an item is being held
 		$heldItem.position = get_local_mouse_position()
