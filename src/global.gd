@@ -61,3 +61,6 @@ func pickup(item: Item, startIndex: int, itemData: Array) -> void:
 	if not placeFound:
 		# Drop item in world, or ignore
 		pass
+=======
+
+const CHUNK_SIZE := 32

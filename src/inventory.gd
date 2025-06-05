@@ -45,6 +45,31 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_right"): # DEBUG
 		var rng = RandomNumberGenerator.new()
 		var new_item = Item.new(rng.randi_range(1, 4), 1)
+=======
+			if(itemData[slot.slotID].amount > 1):
+				slot.get_node("displayItem/AmountDisp").text = str(itemData[slot.slotID].amount)
+			else:
+				slot.get_node("displayItem/AmountDisp").text = ""
+			
+		if inventoryOn && Input.is_action_just_pressed("select"): #selects item
+			var mPos = get_local_mouse_position()
+			var size = Vector2(16,16)
+			if isOverInvetorySlot(mPos, Rect2(slot.position.x-size.x/2,slot.position.y-size.y/2,size.x,size.y)):
+				itemInHand = itemData[slot.slotID]
+				itemData[slot.slotID] = Item.new(0,0)
+		if inventoryOn && Input.is_action_just_released("select") && itemInHand != null: #drops item
+			var mPos = get_local_mouse_position()
+			var size = Vector2(20,20)
+			if isOverInvetorySlot(mPos, Rect2(slot.position.x-size.x/2,slot.position.y-size.y/2,size.x,size.y)):
+				pickup(itemInHand,slot.slotID)
+				itemInHand = null
+		
+	if(Input.is_action_just_pressed("inventory")): #toggles inventory when E key is pressed
+		inventoryOn = !inventoryOn
+	#if(Input.is_action_just_pressed("right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
+		#var rng = RandomNumberGenerator.new()
+		#for n in range(100):
+			#pickup(Item.new(rng.randi_range(1,4),1),0)
 		
 		# Try inventory first
 		var placed = false

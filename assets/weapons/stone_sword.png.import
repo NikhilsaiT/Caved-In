@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cegpr6fsl8m2r"
-path="res://.godot/imported/pixil-frame-0_7.webp-50cfbf8ab788c3c873a9fda38f674d05.ctex"
+uid="uid://bem4r1fssb51b"
+path="res://.godot/imported/stone_sword.png-1d574db692f55ecbd0f25437ce33707e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixil-frame-0_7.webp"
-dest_files=["res://.godot/imported/pixil-frame-0_7.webp-50cfbf8ab788c3c873a9fda38f674d05.ctex"]
+source_file="res://assets/weapons/stone_sword.png"
+dest_files=["res://.godot/imported/stone_sword.png-1d574db692f55ecbd0f25437ce33707e.ctex"]
 
 [params]
 

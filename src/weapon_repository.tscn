@@ -1,0 +1,168 @@
+[gd_scene load_steps=10 format=3 uid="uid://d13ytuoilkf83"]
+
+[ext_resource type="Texture2D" uid="uid://bem4r1fssb51b" path="res://assets/weapons/stone_sword.png" id="1_aar0v"]
+[ext_resource type="Script" uid="uid://b56sn88kp80n2" path="res://src/weapon.gd" id="1_u77ix"]
+[ext_resource type="Texture2D" uid="uid://larf2r1mjos8" path="res://assets/weapons/stone_spear.png" id="3_hr4ov"]
+[ext_resource type="Texture2D" uid="uid://dr24a8nt3nfob" path="res://assets/weapons/stone_dagger.png" id="4_txynv"]
+[ext_resource type="Texture2D" uid="uid://bieusuhoolxtb" path="res://assets/weapons/stone_hammer.png" id="5_htqao"]
+[ext_resource type="Script" uid="uid://6pfnuehwwab1" path="res://src/weapon_hitbox.gd" id="6_htqao"]
+[ext_resource type="Texture2D" uid="uid://cb87jrmcq873" path="res://assets/weapons/stone_greatsword.png" id="6_rq5yh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u77ix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aar0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hr4ov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_txynv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_htqao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rq5yh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr4ov"]
+size = Vector2(6, 6)
+
+[node name="weapon_repository" type="Node2D"]
+
+[node name="stone_sword" type="StaticBody2D" parent="."]
+position = Vector2(27, 12)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_u77ix")
+weapon_name = "stone_sword"
+weapon_type = "sword"
+swing_angle = 270.0
+lifetime = 0.4
+damage = 10
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="stone_sword"]
+position = Vector2(23, 0)
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_u77ix")
+
+[node name="weapon_hitbox" type="Area2D" parent="stone_sword"]
+script = ExtResource("6_htqao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone_sword/weapon_hitbox"]
+position = Vector2(18, 0)
+scale = Vector2(3, 1)
+shape = SubResource("RectangleShape2D_hr4ov")
+disabled = true
+
+[node name="stone_spear" type="StaticBody2D" parent="."]
+position = Vector2(99, 12)
+collision_layer = 2
+script = ExtResource("1_u77ix")
+weapon_name = "stone_spear"
+weapon_type = "spear"
+swing_angle = 40.0
+lifetime = 0.2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="stone_spear"]
+position = Vector2(-16, 0)
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_u77ix")
+frame = 1
+
+[node name="weapon_hitbox" type="Area2D" parent="stone_spear"]
+script = ExtResource("6_htqao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone_spear/weapon_hitbox"]
+scale = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_hr4ov")
+disabled = true
+
+[node name="stone_dagger" type="StaticBody2D" parent="."]
+position = Vector2(39, 49)
+collision_layer = 2
+script = ExtResource("1_u77ix")
+weapon_name = "stone_dagger"
+weapon_type = "dagger"
+swing_angle = 24.0
+lifetime = 0.15
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="stone_dagger"]
+position = Vector2(12, -1.90735e-06)
+rotation = 0.785398
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_u77ix")
+frame = 2
+
+[node name="weapon_hitbox" type="Area2D" parent="stone_dagger"]
+script = ExtResource("6_htqao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone_dagger/weapon_hitbox"]
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_hr4ov")
+disabled = true
+
+[node name="stone_hammer" type="StaticBody2D" parent="."]
+position = Vector2(68, 50)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_u77ix")
+weapon_name = "stone_hammer"
+weapon_type = "hammer"
+swing_angle = 270.0
+lifetime = 0.7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="stone_hammer"]
+position = Vector2(23, 0)
+rotation = 0.785398
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_u77ix")
+frame = 3
+
+[node name="weapon_hitbox" type="Area2D" parent="stone_hammer"]
+collision_mask = 3
+script = ExtResource("6_htqao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone_hammer/weapon_hitbox"]
+position = Vector2(18, 0)
+scale = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_hr4ov")
+disabled = true
+
+[node name="stone_greatsword" type="StaticBody2D" parent="."]
+position = Vector2(17, 81)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_u77ix")
+weapon_name = "stone_greatsword"
+weapon_type = "greatsword"
+swing_angle = 270.0
+lifetime = 1.0
+damage = 10
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="stone_greatsword"]
+position = Vector2(23, 0)
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_u77ix")
+frame = 4
+
+[node name="weapon_hitbox" type="Area2D" parent="stone_greatsword"]
+script = ExtResource("6_htqao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone_greatsword/weapon_hitbox"]
+position = Vector2(21, 0)
+scale = Vector2(4, 1.2)
+shape = SubResource("RectangleShape2D_hr4ov")
+disabled = true
+
+[connection signal="area_entered" from="stone_sword/weapon_hitbox" to="stone_sword/weapon_hitbox" method="_on_area_entered"]
+[connection signal="area_entered" from="stone_spear/weapon_hitbox" to="stone_spear/weapon_hitbox" method="_on_area_entered"]
+[connection signal="area_entered" from="stone_dagger/weapon_hitbox" to="stone_dagger/weapon_hitbox" method="_on_area_entered"]
+[connection signal="area_entered" from="stone_hammer/weapon_hitbox" to="stone_hammer/weapon_hitbox" method="_on_area_entered"]
+[connection signal="area_entered" from="stone_greatsword/weapon_hitbox" to="stone_greatsword/weapon_hitbox" method="_on_area_entered"]
