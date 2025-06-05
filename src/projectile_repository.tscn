@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhofreityxdf4"]
+
+[ext_resource type="Texture2D" uid="uid://dmvy1sgh4jnan" path="res://assets/projectiles/punch.png" id="1_dkeup"]
+[ext_resource type="Script" uid="uid://chmupcb424qju" path="res://src/projectile.gd" id="1_s0kcl"]
+[ext_resource type="Script" uid="uid://dny4jcf15jwtd" path="res://src/projectile_hitbox.gd" id="3_0baft"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0kcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dkeup")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0baft"]
+
+[node name="projectile_repository" type="Node2D"]
+
+[node name="punch" type="CharacterBody2D" parent="."]
+position = Vector2(41, 35)
+script = ExtResource("1_s0kcl")
+proj_name = "punch"
+damage = 10
+damage_type = "melee"
+speed = 300.0
+lifetime = 0.1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="punch"]
+sprite_frames = SubResource("SpriteFrames_s0kcl")
+
+[node name="projectile_hitbox" type="Area2D" parent="punch"]
+script = ExtResource("3_0baft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="punch/projectile_hitbox"]
+position = Vector2(1, 0)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_0baft")
+disabled = true
+
+[connection signal="area_entered" from="punch/projectile_hitbox" to="punch/projectile_hitbox" method="_on_area_entered"]
