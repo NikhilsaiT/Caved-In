@@ -17,3 +17,6 @@ func _init(id: int, amt: int) -> void:
 
 func getID() -> int:
 	return ID
+	
+func clone():
+	return Item.new(self.ID, self.amount)
