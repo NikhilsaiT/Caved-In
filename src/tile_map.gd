@@ -23,8 +23,8 @@ func _input(event: InputEvent) -> void:
 func set_custom_tile(center_pos: Vector2i, tile_atlas_pos: Vector2 = Vector2(0, 0)):
 	var chunk_pos = center_pos
 
-	for dx in range(-2, 3):  
-		for dy in range(-2, 3):
+	for dx in range(1, 2):  
+		for dy in range(1, 2):
 			var pos = center_pos + Vector2i(dx, dy)
 			remove_tile(pos)
 
