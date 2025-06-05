@@ -41,42 +41,17 @@ func _process(delta: float) -> void:
 			placed = crafting.try_pickup(Global.itemInHand, mPos)
 		if placed:
 			Global.itemInHand = null #drops item
-	
+
 	if Input.is_action_just_pressed("move_right"): # DEBUG
 		var rng = RandomNumberGenerator.new()
 		var new_item = Item.new(rng.randi_range(1, 4), 1)
-=======
-			if(itemData[slot.slotID].amount > 1):
-				slot.get_node("displayItem/AmountDisp").text = str(itemData[slot.slotID].amount)
-			else:
-				slot.get_node("displayItem/AmountDisp").text = ""
-			
-		if inventoryOn && Input.is_action_just_pressed("select"): #selects item
-			var mPos = get_local_mouse_position()
-			var size = Vector2(16,16)
-			if isOverInvetorySlot(mPos, Rect2(slot.position.x-size.x/2,slot.position.y-size.y/2,size.x,size.y)):
-				itemInHand = itemData[slot.slotID]
-				itemData[slot.slotID] = Item.new(0,0)
-		if inventoryOn && Input.is_action_just_released("select") && itemInHand != null: #drops item
-			var mPos = get_local_mouse_position()
-			var size = Vector2(20,20)
-			if isOverInvetorySlot(mPos, Rect2(slot.position.x-size.x/2,slot.position.y-size.y/2,size.x,size.y)):
-				pickup(itemInHand,slot.slotID)
-				itemInHand = null
-		
-	if(Input.is_action_just_pressed("inventory")): #toggles inventory when E key is pressed
-		inventoryOn = !inventoryOn
-	#if(Input.is_action_just_pressed("right")): #DEBUG: adds 1 iron ingot to inventory (delete later)
-		#var rng = RandomNumberGenerator.new()
-		#for n in range(100):
-			#pickup(Item.new(rng.randi_range(1,4),1),0)
-		
+
 		# Try inventory first
 		var placed = false
 		for i in itemData.size():
 			var slot_item = itemData[i]
 			var max_stack = Global.ITEM_DATA[new_item.ID][2]
-			
+
 			if slot_item.ID == 0:
 				itemData[i] = new_item
 				placed = true
@@ -100,7 +75,7 @@ func _process(delta: float) -> void:
 		$heldItem.get_node("AmountDisp").text = str(Global.itemInHand.amount)
 	else:
 		$heldItem.visible = false
-	
+
 	handle_shift_drag(delta)
 
 func pickup(item: Item, slot_id: int) -> void:
@@ -144,7 +119,7 @@ func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:
 		if slot_rect.has_point(mPos):
 			return slot
 	return null
-	
+
 
 func handle_shift_drag(delta: float) -> void:
 	if inventoryOn and Input.is_action_pressed("select") and Input.is_action_pressed("shift") and Global.itemInHand != null:
