@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds8g5te3pwj41"]
+
+[ext_resource type="Script" uid="uid://drkedtb0fgqwf" path="res://result_slot.gd" id="1_t0t3w"]
+[ext_resource type="PackedScene" uid="uid://0lx1jrhvf47v" path="res://src/display_item.tscn" id="2_pnuuk"]
+
+[node name="ResultSlot" type="Node2D"]
+script = ExtResource("1_t0t3w")
+
+[node name="displayItem" parent="." instance=ExtResource("2_pnuuk")]

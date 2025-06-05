@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://q60jrunj0rdk"]
+
+[ext_resource type="Script" uid="uid://c2luuo6ktdh7w" path="res://src/crafting.gd" id="1_534rb"]
+[ext_resource type="PackedScene" uid="uid://bdf6vuyv8f0u0" path="res://src/crafting_slot.tscn" id="2_h6g8n"]
+[ext_resource type="PackedScene" uid="uid://0lx1jrhvf47v" path="res://src/display_item.tscn" id="3_nns6g"]
+
+[node name="crafting" type="Node2D"]
+script = ExtResource("1_534rb")
+
+[node name="Slot0" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+
+[node name="Slot1" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(20, 0)
+frame = 1
+slotID = 1
+
+[node name="Slot2" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(40, 0)
+frame = 2
+slotID = 2
+
+[node name="Slot3" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(0, 20)
+frame = 4
+slotID = 3
+
+[node name="Slot4" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(20, 20)
+frame = 5
+slotID = 4
+
+[node name="Slot5" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(40, 20)
+frame = 6
+slotID = 5
+
+[node name="Slot6" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(0, 40)
+frame = 8
+slotID = 6
+
+[node name="Slot7" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(20, 40)
+frame = 9
+slotID = 7
+
+[node name="Slot8" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(40, 40)
+frame = 10
+slotID = 8
+
+[node name="resultSlot" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+position = Vector2(87, 21)
+frame = 15
+slotID = 9
+
+[node name="heldItem" parent="." instance=ExtResource("3_nns6g")]
+position = Vector2(-18, 12)
