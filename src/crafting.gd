@@ -123,10 +123,14 @@ func pickup(item: Item, slot_id: int) -> void:
 
 func try_pickup(item: Item, mPos: Vector2) -> bool:
 	var slot = get_slot_under_mouse(mPos, "crafting_slots")
-	if slot != null:
-		pickup(item, slot.slotID)
-		return true
+	
+	# Safely check that slot exists and has a valid slotID before calling pickup
+	if slot != null and slot.has_method("get"):  # Optional extra safety
+		if "slotID" in slot and slot.slotID >= 0 and slot.slotID < itemData.size():
+			pickup(item, slot.slotID)
+			return true
 	return false
+
 
 func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:
 	for slot in get_tree().get_nodes_in_group(group_name):
@@ -186,7 +190,7 @@ func handle_shift_drag(delta: float) -> void:
 
 		if slot != null and not dragged_slots.has(slot.slotID):
 			var max_stack = Global.ITEM_DATA[Global.itemInHand.ID][2]
-			if itemData[slot.slotID].ID == 0 or (itemData[slot.slotID].ID == Global.itemInHand.ID and itemData[slot.slotID].amount < max_stack):
+			if itemData[slot.slotID].ID == 0 or (itemData[slot.slotID].ID == Global.itemInHand.ID):
 				# Place one item
 				if Global.itemInHand.amount > 1:
 					if itemData[slot.slotID].ID == 0:
