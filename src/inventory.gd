@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		var mPos = get_global_mouse_position()
 		var placed = try_pickup(Global.itemInHand, mPos)
 		if not placed:
-			var crafting = get_node("/root/world/Player/crafting") # <- update this path to match your scene
+			var crafting = get_node("/root/world/Player/crafting") 
 			placed = crafting.try_pickup(Global.itemInHand, mPos)
 		if placed:
 			Global.itemInHand = null #drops item
