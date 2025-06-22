@@ -5,15 +5,9 @@ var itemData
 var is_shift_dragging := false
 var dragged_slots := []
 
-# Each recipe defines input IDs and a resulting Item (cloned when applied)
-# Recipes with required orientation
-var RECIPES = [
-	{ "inputs": [1, 2], "result": Item.new(3, 1), "orientation": "horizontal" },
-]
-
 func _ready() -> void:
 	itemData = []
-	itemData.resize(10) # 9 input + 1 result
+	itemData.resize(5) # 4 input + 1 result
 	for i in range(itemData.size()):
 		itemData[i] = Item.new(0, 0)
 
@@ -35,46 +29,29 @@ func _process(delta: float) -> void:
 			else:
 				slot.get_node("displayItem/AnimatedSprite2D").frame = 0
 				slot.get_node("displayItem/AmountDisp").text = ""
-	
+
 	handle_shift_drag(delta)
 
-	# Handle picking up from result slot and consuming ingredients
 	if craftingOn and Input.is_action_just_pressed("select"):
 		var mPos = get_global_mouse_position()
 		var slot = get_slot_under_mouse(mPos, "crafting_slots")
 
 		if slot != null:
-			# Handle result slot (crafting output)
-			if slot.slotID == 9 and itemData[9].ID != 0:
-				Global.itemInHand = itemData[9]
-				itemData[9] = Item.new(0, 0)
+			if slot.slotID == 4 and itemData[4].ID != 0:
+				Global.itemInHand = itemData[4]
+				Global.itemSourceSlot = null
+				itemData[4] = Item.new(0, 0)
 
-				# Consume ingredients
-				for recipe in RECIPES:
-					var expected = recipe["inputs"].duplicate()
-					expected.sort()
-					var current = []
-					for i in range(0, 9):
-						if itemData[i].ID != 0:
-							current.append(itemData[i].ID)
-					current.sort()
-
-					if current == expected:
-						for id in recipe["inputs"]:
-							for i in range(0, 9):
-								if itemData[i].ID == id and itemData[i].amount > 0:
-									itemData[i].amount -= 1
-									if itemData[i].amount <= 0:
-										itemData[i] = Item.new(0, 0)
-									break
+				for recipe in Global.CRAFTING_RECIPES:
+					if recipe_matches(recipe):
+						consume_pattern(recipe)
 						break
 				check_crafting()
 
-			# Handle regular slot interaction (slotID 0–8)
 			elif Global.itemInHand == null:
 				Global.itemInHand = itemData[slot.slotID]
+				Global.itemSourceSlot = slot.slotID
 				itemData[slot.slotID] = Item.new(0, 0)
-
 
 	if craftingOn and Input.is_action_just_released("select") and Global.itemInHand != null:
 		var mPos = get_global_mouse_position()
@@ -82,8 +59,14 @@ func _process(delta: float) -> void:
 		if not placed:
 			var inventory = get_node("/root/world/Player/Inventory")
 			placed = inventory.try_pickup(Global.itemInHand, mPos)
+
 		if placed:
 			Global.itemInHand = null
+			Global.itemSourceSlot = null
+		elif Global.itemSourceSlot != null:
+			itemData[Global.itemSourceSlot] = Global.itemInHand
+			Global.itemInHand = null
+			Global.itemSourceSlot = null
 
 	if Global.itemInHand != null:
 		$heldItem.position = get_local_mouse_position()
@@ -123,14 +106,12 @@ func pickup(item: Item, slot_id: int) -> void:
 
 func try_pickup(item: Item, mPos: Vector2) -> bool:
 	var slot = get_slot_under_mouse(mPos, "crafting_slots")
-	
-	# Safely check that slot exists and has a valid slotID before calling pickup
-	if slot != null and slot.has_method("get"):  # Optional extra safety
+
+	if slot != null and slot.has_method("get"):
 		if "slotID" in slot and slot.slotID >= 0 and slot.slotID < itemData.size():
 			pickup(item, slot.slotID)
 			return true
 	return false
-
 
 func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:
 	for slot in get_tree().get_nodes_in_group(group_name):
@@ -142,45 +123,62 @@ func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:
 
 func check_crafting():
 	var matched = false
-	for recipe in RECIPES:
+	for recipe in Global.CRAFTING_RECIPES:
 		if recipe_matches(recipe):
-			itemData[9] = recipe["result"].clone()
+			itemData[4] = recipe["result"].clone()
 			matched = true
 			break
 
 	if not matched:
-		itemData[9] = Item.new(0, 0)
+		itemData[4] = Item.new(0, 0)
 
 func recipe_matches(recipe: Dictionary) -> bool:
-	var inputs = recipe["inputs"].duplicate()
-	inputs.sort()
+	var pattern = recipe["pattern"]
+	var pattern_size = Vector2(len(pattern[0]), len(pattern))
 
-	var found := false
+	var grid_ids = [
+	[itemData[0].ID, itemData[1].ID],
+	[itemData[2].ID, itemData[3].ID]
+]
 
-	if recipe["orientation"] == "horizontal":
-		for y in range(3):  # Rows
-			for x in range(2):  # Columns
-				var i1 = y * 3 + x
-				var i2 = i1 + 1
-				var pair = [itemData[i1].ID, itemData[i2].ID]
-				if pair == inputs:
-					found = true
-					break
-			if found:
+	for y_off in range(3 - int(pattern_size.y)):
+		for x_off in range(3 - int(pattern_size.x)):
+			if pattern_fits_at(grid_ids, pattern, x_off, y_off):
+				return true
+	return false
+
+func pattern_fits_at(grid: Array, pattern: Array, x_off: int, y_off: int) -> bool:
+	for y in range(len(pattern)):
+		for x in range(len(pattern[0])):
+			var pattern_val = pattern[y][x]
+			if pattern_val == 0:
+				continue
+			if grid[y + y_off][x + x_off] != pattern_val:
+				return false
+	return true
+
+func consume_pattern(recipe: Dictionary):
+	var pattern = recipe["pattern"]
+	var pattern_size = Vector2(len(pattern[0]), len(pattern))
+
+	var grid_ids = [
+	[itemData[0].ID, itemData[1].ID],
+	[itemData[2].ID, itemData[3].ID]
+]
+
+
+	for y_off in range(3 - int(pattern_size.y)):
+		for x_off in range(3 - int(pattern_size.x)):
+			if pattern_fits_at(grid_ids, pattern, x_off, y_off):
+				for y in range(len(pattern)):
+					for x in range(len(pattern[0])):
+						var id_to_remove = pattern[y][x]
+						if id_to_remove != 0:
+							var index = (y + y_off) * 2 + (x + x_off)
+							itemData[index].amount -= 1
+							if itemData[index].amount <= 0:
+								itemData[index] = Item.new(0, 0)
 				break
-	elif recipe["orientation"] == "vertical":
-		for x in range(3):  # Columns
-			for y in range(2):  # Rows
-				var i1 = y * 3 + x
-				var i2 = (y + 1) * 3 + x
-				var pair = [itemData[i1].ID, itemData[i2].ID]
-				if pair == inputs:
-					found = true
-					break
-			if found:
-				break
-
-	return found
 
 func handle_shift_drag(delta: float) -> void:
 	if craftingOn and Input.is_action_pressed("select") and Input.is_action_pressed("shift") and Global.itemInHand != null:
@@ -188,10 +186,9 @@ func handle_shift_drag(delta: float) -> void:
 		var mPos = get_global_mouse_position()
 		var slot = get_slot_under_mouse(mPos, "crafting_slots")
 
-		if slot != null and not dragged_slots.has(slot.slotID):
+		if slot != null and not dragged_slots.has(slot.slotID) and slot.slotID < 4:
 			var max_stack = Global.ITEM_DATA[Global.itemInHand.ID][2]
 			if itemData[slot.slotID].ID == 0 or (itemData[slot.slotID].ID == Global.itemInHand.ID):
-				# Place one item
 				if Global.itemInHand.amount > 1:
 					if itemData[slot.slotID].ID == 0:
 						itemData[slot.slotID] = Item.new(Global.itemInHand.ID, 1)

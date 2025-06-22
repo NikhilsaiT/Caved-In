@@ -16,8 +16,7 @@ const ITEM_DATA = [
 	]
 	
 var itemInHand: Item = null
-
-# In Global.gd, add:
+var itemSourceSlot = null
 
 func is_over_any_slot(mPos: Vector2) -> Dictionary:
 	var groups = ["slots", "crafting_slots"]
@@ -61,5 +60,22 @@ func pickup(item: Item, startIndex: int, itemData: Array) -> void:
 	if not placeFound:
 		# Drop item in world, or ignore
 		pass
+
+var CRAFTING_RECIPES = [
+	{
+		"pattern": [
+			[1, 2],
+			[0, 0]
+		],
+		"result": Item.new(3, 1)
+	},
+	{
+		"pattern": [
+			[0, 0],
+			[1, 2]
+		],
+		"result": Item.new(3, 1)
+	}
+]
 
 const CHUNK_SIZE := 32

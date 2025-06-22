@@ -31,22 +31,28 @@ func _process(delta: float) -> void:
 		var slot = get_slot_under_mouse(mPos, "slots")
 		if slot != null:
 			Global.itemInHand = itemData[slot.slotID]
+			Global.itemSourceSlot = slot.slotID
 			itemData[slot.slotID] = Item.new(0, 0)
 
 	if inventoryOn and Input.is_action_just_released("select") and Global.itemInHand != null:
 		var mPos = get_global_mouse_position()
 		var placed = try_pickup(Global.itemInHand, mPos)
 		if not placed:
-			var crafting = get_node("/root/world/Player/crafting") # <- update this path to match your scene
+			var crafting = get_node("/root/world/Player/crafting")
 			placed = crafting.try_pickup(Global.itemInHand, mPos)
+
 		if placed:
-			Global.itemInHand = null #drops item
+			Global.itemInHand = null
+			Global.itemSourceSlot = null
+		elif Global.itemSourceSlot != null:
+			itemData[Global.itemSourceSlot] = Global.itemInHand
+			Global.itemInHand = null
+			Global.itemSourceSlot = null
 
 	if Input.is_action_just_pressed("move_right"): # DEBUG
 		var rng = RandomNumberGenerator.new()
 		var new_item = Item.new(rng.randi_range(1, 4), 1)
 
-		# Try inventory first
 		var placed = false
 		for i in itemData.size():
 			var slot_item = itemData[i]
@@ -65,8 +71,6 @@ func _process(delta: float) -> void:
 				else:
 					slot_item.amount = max_stack
 					new_item.amount -= space
-
-
 
 	if Global.itemInHand != null: #Displays the item in hand if an item is being held
 		$heldItem.position = get_local_mouse_position()
@@ -94,7 +98,6 @@ func pickup(item: Item, slot_id: int) -> void:
 		itemData[slot_id] = item
 		return
 
-	# fallback stack
 	for i in itemData.size():
 		if itemData[i].ID == item.ID and itemData[i].amount < max_stack:
 			var room = max_stack - itemData[i].amount
@@ -120,7 +123,6 @@ func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:
 			return slot
 	return null
 
-
 func handle_shift_drag(delta: float) -> void:
 	if inventoryOn and Input.is_action_pressed("select") and Input.is_action_pressed("shift") and Global.itemInHand != null:
 		is_shift_dragging = true
@@ -130,7 +132,6 @@ func handle_shift_drag(delta: float) -> void:
 		if slot != null and not dragged_slots.has(slot.slotID):
 			var max_stack = Global.ITEM_DATA[Global.itemInHand.ID][2]
 			if itemData[slot.slotID].ID == 0 or (itemData[slot.slotID].ID == Global.itemInHand.ID and itemData[slot.slotID].amount < max_stack):
-				# Place one item
 				if Global.itemInHand.amount > 1:
 					if itemData[slot.slotID].ID == 0:
 						itemData[slot.slotID] = Item.new(Global.itemInHand.ID, 1)
