@@ -40,7 +40,6 @@ func _process(delta: float) -> void:
 		if not placed:
 			var crafting = get_node("/root/world/Player/crafting")
 			placed = crafting.try_pickup(Global.itemInHand, mPos)
-
 		if placed:
 			Global.itemInHand = null
 			Global.itemSourceSlot = null
@@ -48,6 +47,7 @@ func _process(delta: float) -> void:
 			itemData[Global.itemSourceSlot] = Global.itemInHand
 			Global.itemInHand = null
 			Global.itemSourceSlot = null
+		
 
 	if Input.is_action_just_pressed("move_right"): # DEBUG
 		var rng = RandomNumberGenerator.new()
@@ -111,8 +111,14 @@ func pickup(item: Item, slot_id: int) -> void:
 func try_pickup(item: Item, mPos: Vector2) -> bool:
 	var slot = get_slot_under_mouse(mPos, "slots")
 	if slot != null:
-		pickup(item, slot.slotID)
-		return true
+		var existing = itemData[slot.slotID]
+		var max_stack = Global.ITEM_DATA[item.ID][2]
+
+		# Accept only if the destination is empty OR can stack more of the same item
+		if existing.ID == 0 or (existing.ID == item.ID and existing.amount < max_stack):
+			pickup(item, slot.slotID)
+			return true
+		# Otherwise, refuse the drop so the caller reverts the item
 	return false
 
 func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:

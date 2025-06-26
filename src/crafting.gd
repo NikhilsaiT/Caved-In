@@ -106,11 +106,15 @@ func pickup(item: Item, slot_id: int) -> void:
 
 func try_pickup(item: Item, mPos: Vector2) -> bool:
 	var slot = get_slot_under_mouse(mPos, "crafting_slots")
+	if slot != null:
+		var existing = itemData[slot.slotID]
+		var max_stack = Global.ITEM_DATA[item.ID][2]
 
-	if slot != null and slot.has_method("get"):
-		if "slotID" in slot and slot.slotID >= 0 and slot.slotID < itemData.size():
+		# Accept only if the destination is empty OR can stack more of the same item
+		if existing.ID == 0 or (existing.ID == item.ID and existing.amount < max_stack):
 			pickup(item, slot.slotID)
 			return true
+		# Otherwise, refuse the drop so the caller reverts the item
 	return false
 
 func get_slot_under_mouse(mPos: Vector2, group_name: String) -> Node:

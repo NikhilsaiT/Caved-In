@@ -8,24 +8,25 @@
 script = ExtResource("1_534rb")
 
 [node name="Slot0" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
+frame = 12
 
 [node name="Slot1" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
 position = Vector2(20, 0)
-frame = 2
+frame = 13
 slotID = 1
 
 [node name="Slot2" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
-position = Vector2(0, 20)
-frame = 8
+position = Vector2(40, 0)
+frame = 13
 slotID = 2
 
 [node name="Slot3" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
-position = Vector2(20, 20)
-frame = 10
+position = Vector2(60, 0)
+frame = 14
 slotID = 3
 
 [node name="resultSlot" parent="." groups=["crafting_slots"] instance=ExtResource("2_h6g8n")]
-position = Vector2(55, 12)
+position = Vector2(29, -30)
 frame = 15
 slotID = 4
 

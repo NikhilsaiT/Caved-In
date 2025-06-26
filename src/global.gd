@@ -75,6 +75,13 @@ var CRAFTING_RECIPES = [
 			[1, 2]
 		],
 		"result": Item.new(3, 1)
+	},
+	{
+		"pattern": [
+			[0, 1],
+			[2, 0]
+		],
+		"result": Item.new(3, 1)
 	}
 ]
 

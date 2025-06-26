@@ -62,7 +62,7 @@ position = Vector2(233, 239)
 position = Vector2(-192, -108)
 
 [node name="crafting" parent="Player" instance=ExtResource("6_usxdn")]
-position = Vector2(61, -70)
+position = Vector2(60, -53)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 scale = Vector2(0.25, 0.25)
